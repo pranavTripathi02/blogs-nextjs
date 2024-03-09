@@ -2,7 +2,7 @@ import Leftbar from "./_components/leftbar";
 
 export default async function Home() {
   return (
-    <div className="container mt-2 flex justify-center gap-4 md:px-2 lg:px-4 xl:px-8">
+    <div className="dark container mt-2 flex justify-center gap-4 md:px-2 lg:px-4 xl:px-8">
       {/* leftbar */}
       <div className="hidden max-w-72 md:block">
         <Leftbar />
