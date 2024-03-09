@@ -20,7 +20,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-background flex w-full items-center gap-4 border-b p-2">
+    <div className="flex w-full items-center gap-4 border-b bg-background p-2">
       {/* Sidebar */}
       <Sheet defaultOpen={false}>
         {/* sidebar btn */}
@@ -42,7 +42,7 @@ function Navbar() {
         </SheetContent>
       </Sheet>
       {/* logo */}
-      <div className="text-accent ms-0">
+      <div className="ms-0 min-h-[48px] min-w-[48px] text-accent">
         <Link href="/">
           <Image src="/nlogx.svg" alt="site logo" width="48" height="48" />
         </Link>
@@ -59,7 +59,10 @@ function Navbar() {
       </div>
       {/* user */}
       <div className="ms-auto flex gap-4">
-        <Button>
+        <Button
+          variant="outline"
+          className="underline-offset-2 duration-0 hover:underline"
+        >
           <Link href="/register">Create account</Link>
         </Button>
         <Button variant={"link"} className="hidden md:block">
