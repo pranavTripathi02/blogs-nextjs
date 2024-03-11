@@ -5,6 +5,7 @@ import { relations } from "drizzle-orm";
 
 export const comments = sqliteTable("comments", {
   id: integer("id").primaryKey(),
+  parentComment: integer("parent_comment"),
   blogId: integer("blog_id")
     .notNull()
     .references(() => blogs.id, { onDelete: "cascade" }),
@@ -20,3 +21,5 @@ export const commentsRelations = relations(comments, ({ one }) => ({
   parentComment: one(comments),
   blog: one(blogs, { fields: [comments.blogId], references: [blogs.id] }),
 }));
+
+export type TComment = typeof comments.$inferSelect;

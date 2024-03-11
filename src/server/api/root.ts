@@ -1,4 +1,6 @@
-import { postRouter } from "~/server/api/routers/post";
+import { commentsRouter } from "~/server/api/routers/comments";
+import { blogsRouter } from "~/server/api/routers/blogs";
+import { usersRouter } from "~/server/api/routers/users";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -7,7 +9,9 @@ import { createTRPCRouter } from "~/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  users: usersRouter,
+  blogs: blogsRouter,
+  comments: commentsRouter,
 });
 
 // export type definition of API

@@ -27,3 +27,5 @@ export const usersRelations = relations(users, ({ many }) => ({
   blogs: many(blogs),
   comments: many(comments),
 }));
+
+export type TUser = typeof users.$inferSelect;
