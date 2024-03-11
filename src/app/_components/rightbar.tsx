@@ -5,23 +5,35 @@ import {
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
 
-function Leftbar() {
+function Rightbar() {
   return (
     <aside className="flex flex-col gap-4 rounded-md">
       {/* nav links */}
       <nav className="rounded-md bg-background p-2">
         <h2 className="mb-4 font-semibold text-primary">Links</h2>
         <div className="ms-2 flex flex-col gap-4">
-          <a className="underline-offset-2 hover:underline" href="">
+          <a
+            className="underline-offset-2 hover:text-accent hover:underline"
+            href=""
+          >
             <span>Home</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a
+            className="underline-offset-2 hover:text-accent hover:underline"
+            href=""
+          >
             <span>Help</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a
+            className="underline-offset-2 hover:text-accent hover:underline"
+            href=""
+          >
             <span>About</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a
+            className="underline-offset-2 hover:text-accent hover:underline"
+            href=""
+          >
             <span>Contact</span>
           </a>
         </div>
@@ -78,4 +90,4 @@ function Leftbar() {
   );
 }
 
-export default Leftbar;
+export default Rightbar;

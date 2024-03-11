@@ -1,13 +1,12 @@
 import { api } from "~/trpc/server";
 import Leftbar from "./_components/leftbar";
+import Rightbar from "./_components/rightbar";
 import BlogCardImage from "./_components/blogCardImage";
-import type { TBlog } from "~/server/db/schema/blogs";
 import { Suspense } from "react";
-import BlogsList from "./_components/blogsList";
 import BlogCard from "./_components/blogCard";
 
 export default async function Home() {
-  const blogs = await api.blogs.getBlogs.query();
+  const {blogs} = useBlogsContext();
 
   return (
     <div className="container mt-2 flex justify-center gap-4 md:px-2 lg:px-4 xl:px-8">
@@ -35,7 +34,7 @@ export default async function Home() {
       </section>
       {/* rightbar */}
       <div className="hidden max-w-72 lg:block">
-        <Leftbar />
+        <Rightbar />
       </div>
     </div>
   );

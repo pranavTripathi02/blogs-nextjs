@@ -164,7 +164,12 @@ function Register() {
                   <span className="ms-1 text-destructive">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input autoComplete="off" placeholder="Password" {...field} />
+                  <Input
+                    type="password"
+                    autoComplete="off"
+                    placeholder="Password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
                   Enter a password between 8-16 characters
