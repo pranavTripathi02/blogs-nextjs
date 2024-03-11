@@ -14,6 +14,17 @@ export const blogsRouter = createTRPCRouter({
         limit: 5,
         offset: input?.blogsOffset ?? 0,
         orderBy: [desc(blogs.createdAt)],
+        columns: {
+          content: false,
+        },
+        with: {
+          author: {
+            columns: {
+              name: true,
+            },
+          },
+          comments: true,
+        },
       });
       return blogsList;
     }),
