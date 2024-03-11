@@ -1,13 +1,10 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import type { TBlog } from "~/server/db/schema/blogs";
-import { api } from "~/trpc/react";
 
-function BlogCard({ blog }: { blog: TBlog }) {
-  const { title, authorId, createdAt, imageUrl } = blog;
+function BlogCard({ blog }: { blog: any }) {
+  const { title, author, createdAt, imageUrl } = blog;
+  console.log(blog);
   const desc = "";
-  const userName = api.users.userName.useQuery({ authorId });
-  console.log(userName.data);
   return (
     <div className="cursor-pointer">
       <div className="relative flex flex-col bg-background p-2 px-16">
@@ -20,10 +17,10 @@ function BlogCard({ blog }: { blog: TBlog }) {
               alt="user avatar"
               className="h-10 w-10 rounded-full"
             />
-            <AvatarFallback>{userName.data}</AvatarFallback>
+            <AvatarFallback>{author.name}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="text capitalize">{userName.data}</span>
+            <span className="text capitalize">{author.name}</span>
             <span className="text-xs">
               {createdAt?.toDateString() ?? "date"}
             </span>

@@ -5,7 +5,7 @@ import { relations } from "drizzle-orm";
 
 export const comments = sqliteTable("comments", {
   id: integer("id").primaryKey(),
-  parentComment: integer("parent_comment"),
+  // parentComment: integer("parent_comment"),
   blogId: integer("blog_id")
     .notNull()
     .references(() => blogs.id, { onDelete: "cascade" }),

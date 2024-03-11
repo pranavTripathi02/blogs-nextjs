@@ -9,7 +9,9 @@ export const blogs = sqliteTable("blogs", {
   content: text("content").notNull(),
   imageUrl: text("image_url"),
   tags: text("tags"),
+  // relatedTags: text("related_tags").references(()=>tags.id)
   // likes: integer("likes").default(0),
+  // views: integer("views").default(1),
   createdAt: integer("created_at", { mode: "timestamp" }),
   updatedAt: integer("updated_at", { mode: "timestamp" }),
   authorId: integer("user_id")
