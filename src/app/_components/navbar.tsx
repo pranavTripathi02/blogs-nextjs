@@ -42,7 +42,7 @@ function Navbar() {
         </SheetContent>
       </Sheet>
       {/* logo */}
-      <div className="ms-0 min-h-[48px] min-w-[48px] text-accent">
+      <div className="my-auto ms-0 min-w-[48px]">
         <Link href="/">
           <Image src="/nlogx.svg" alt="site logo" width="48" height="48" />
         </Link>
@@ -61,11 +61,12 @@ function Navbar() {
       <div className="ms-auto flex gap-4">
         <Button
           variant="outline"
-          className="underline-offset-2 duration-0 hover:underline"
+          className="border-primary bg-none decoration-primary underline-offset-2 duration-0 hover:underline"
+          asChild
         >
           <Link href="/register">Create account</Link>
         </Button>
-        <Button variant={"link"} className="hidden md:block">
+        <Button variant="ghost" className="hidden md:block">
           <Link href="/login">Log in</Link>
         </Button>
       </div>

@@ -9,29 +9,29 @@ function Leftbar() {
   return (
     <aside className="flex flex-col gap-4 rounded-md">
       {/* nav links */}
-      <nav className="bg-background rounded-md p-2">
-        <h2 className="text-primary mb-4 font-semibold">Links</h2>
+      <nav className="rounded-md bg-background p-2">
+        <h2 className="mb-4 font-semibold text-primary">Links</h2>
         <div className="ms-2 flex flex-col gap-4">
           <a
-            className="hover:text-accent underline-offset-2 hover:underline"
+            className="underline-offset-2 hover:text-accent hover:underline"
             href=""
           >
             <span>Home</span>
           </a>
           <a
-            className="hover:text-accent underline-offset-2 hover:underline"
+            className="underline-offset-2 hover:text-accent hover:underline"
             href=""
           >
             <span>Help</span>
           </a>
           <a
-            className="hover:text-accent underline-offset-2 hover:underline"
+            className="underline-offset-2 hover:text-accent hover:underline"
             href=""
           >
             <span>About</span>
           </a>
           <a
-            className="hover:text-accent underline-offset-2 hover:underline"
+            className="underline-offset-2 hover:text-accent hover:underline"
             href=""
           >
             <span>Contact</span>
@@ -39,8 +39,8 @@ function Leftbar() {
         </div>
       </nav>
       {/* social links */}
-      <nav className="bg-background rounded-md p-2">
-        <h2 className="text-primary mb-4 font-semibold">Connect with us</h2>
+      <nav className="rounded-md bg-background p-2">
+        <h2 className="mb-4 font-semibold text-primary">Connect with us</h2>
         <div className="ms-2 flex gap-4 ">
           <a href="#" className="group flex gap-2">
             <GitHubLogoIcon

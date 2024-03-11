@@ -1,8 +1,11 @@
+import { api } from "~/trpc/server";
 import Leftbar from "./_components/leftbar";
 
 export default async function Home() {
+  // const get = await api.blogs.getBlogs.query()
+  // console.log(get);
   return (
-    <div className="dark container mt-2 flex justify-center gap-4 md:px-2 lg:px-4 xl:px-8">
+    <div className="container mt-2 flex justify-center gap-4 md:px-2 lg:px-4 xl:px-8">
       {/* leftbar */}
       <div className="hidden max-w-72 md:block">
         <Leftbar />
