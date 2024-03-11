@@ -7,6 +7,18 @@ import { users } from "~/server/db/schema/users";
 // import { posts } from "~/server/db/schema";
 
 export const usersRouter = createTRPCRouter({
+  userName: publicProcedure
+    .input(z.object({ authorId: z.number() }))
+    .query(async ({ input, ctx }) => {
+      const { authorId } = input;
+      const userName = await ctx.db.query.users.findFirst({
+        columns: {
+          name: true,
+        },
+        where: eq(users.id, authorId),
+      });
+      return userName?.name;
+    }),
   register: publicProcedure
     .input(
       z.object({

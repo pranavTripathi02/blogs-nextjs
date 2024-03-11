@@ -9,8 +9,9 @@ export const blogs = sqliteTable("blogs", {
   content: text("content").notNull(),
   imageUrl: text("image_url"),
   tags: text("tags"),
-  createdAt: integer("created_at", { mode: "timestamp_ms" }),
-  updatedAt: integer("updated_at", { mode: "timestamp_ms" }),
+  // likes: integer("likes").default(0),
+  createdAt: integer("created_at", { mode: "timestamp" }),
+  updatedAt: integer("updated_at", { mode: "timestamp" }),
   authorId: integer("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
