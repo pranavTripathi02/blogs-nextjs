@@ -6,10 +6,8 @@ import { Input } from "~/components/ui/input";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import Leftbar from "./leftbar";
-import Image from "next/image";
 import Link from "next/link";
-
-// import {Button}
+import LogoSVG from "./assets/logo";
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,9 +40,9 @@ function Navbar() {
         </SheetContent>
       </Sheet>
       {/* logo */}
-      <div className="my-auto ms-0 min-w-[48px]">
-        <Link href="/">
-          <Image src="/nlogx.svg" alt="site logo" width="48" height="48" />
+      <div className="ms-0 ">
+        <Link href="/" className="inline-block align-middle">
+          <LogoSVG />
         </Link>
       </div>
       {/* searchbar */}

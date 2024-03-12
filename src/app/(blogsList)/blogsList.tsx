@@ -1,4 +1,4 @@
-import { RouterOutputs } from "~/trpc/shared";
+import type { RouterOutputs } from "~/trpc/shared";
 import BlogCardImage from "../_components/blogCardImage";
 import BlogCard from "../_components/blogCard";
 

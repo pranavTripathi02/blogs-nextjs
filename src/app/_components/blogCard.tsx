@@ -8,6 +8,7 @@ import type { RouterOutputs } from "~/trpc/shared";
 function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
   // TODO: add tags
   const { title, author, desc, likes, createdAt, imageUrl, comments } = blog;
+  const blogDate = createdAt?.toDateString();
   return (
     <div className="mb-4">
       <div className="relative flex flex-col bg-background p-2 px-16">
@@ -24,9 +25,7 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
           </Avatar>
           <div className="flex flex-col">
             <span className="text capitalize">{author.name}</span>
-            <span className="text-xs">
-              {createdAt?.toDateString() ?? "date"}
-            </span>
+            <span className="text-xs">{blogDate ?? "date"}</span>
           </div>
         </div>
         {/* tags */}
