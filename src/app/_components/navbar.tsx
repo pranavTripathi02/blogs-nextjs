@@ -20,7 +20,7 @@ function Navbar() {
   };
 
   return (
-    <div className="flex w-full items-center gap-4 border-b bg-background p-2">
+    <div className="sticky top-0 z-10 flex min-h-16 w-full items-center gap-4 border-b bg-background p-2">
       {/* Sidebar */}
       <Sheet defaultOpen={false}>
         {/* sidebar btn */}

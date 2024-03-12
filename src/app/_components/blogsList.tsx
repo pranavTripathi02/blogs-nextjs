@@ -1,7 +1,9 @@
+"use client";
 import type { TBlog } from "~/server/db/schema/blogs";
 import BlogCardImage from "./blogCardImage";
+import { RouterOutputs } from "~/trpc/shared";
 
-function BlogsList({ blogs }: { blogs: TBlog[] }) {
+function BlogsList() {
   return (
     <div>
       {blogs.map((blog: TBlog) => {

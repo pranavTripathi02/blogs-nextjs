@@ -1,9 +1,9 @@
 import { api } from "~/trpc/server";
 import Leftbar from "./_components/leftbar";
 import Rightbar from "./_components/rightbar";
+import BlogCardImage from "./_components/blogCardImage";
 import { Suspense } from "react";
-import BlogsList from "./(blogsList)/blogsList";
-import Loading from "./loading";
+import BlogCard from "./_components/blogCard";
 
 export default async function Home() {
   const blogs = await api.blogs.getBlogs.query({ sortBy: "likes" });
@@ -16,8 +16,20 @@ export default async function Home() {
       </div>
       {/* content */}
       <section className="w-full max-w-2xl">
-        <Suspense fallback={<Loading />}>
-          <BlogsList blogs={blogs} />
+        <Suspense fallback={<p>Loading</p>}>
+          {blogs && (
+            <>
+              {blogs[0] && <BlogCardImage blog={blogs[0]} />}
+              {blogs[1] && <BlogCardImage blog={blogs[1]} />}
+              {blogs.slice(2).map((blog) => {
+                return (
+                  <div key={blog.id}>
+                    <BlogCard blog={blog} />
+                  </div>
+                );
+              })}
+            </>
+          )}
         </Suspense>
       </section>
       {/* rightbar */}
