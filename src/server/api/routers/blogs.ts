@@ -1,19 +1,28 @@
-import { desc, eq } from "drizzle-orm";
+import { asc, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { blogs } from "~/server/db/schema/blogs";
+import { blogs } from "~/db/schema/blogs";
+
+const sortByValues = ["likes", "views", "createdAt"] as const;
+const sortDir = ["asc", "desc"] as const;
+// type sortType = Infer<typeof blogs>
 
 export const blogsRouter = createTRPCRouter({
   getBlogs: publicProcedure
-    .input(z.object({ blogsOffset: z.number() }).optional())
+    .input(
+      z.object({
+        offset: z.number().optional().default(0),
+        sortBy: z.enum(sortByValues).optional().default("createdAt"),
+        sortDir: z.enum(sortDir).optional().default("desc"),
+      }),
+    )
     .query(async ({ input, ctx }) => {
-      // if(input?.blogsOffset)
-      //   const { blogsOffset } = input;
+      const { sortDir, sortBy, offset } = input;
       const blogsList = await ctx.db.query.blogs.findMany({
         limit: 5,
-        offset: input?.blogsOffset ?? 0,
-        orderBy: [desc(blogs.createdAt)],
+        offset,
+        orderBy: [sortDir == "asc" ? asc(blogs[sortBy]) : desc(blogs[sortBy])],
         columns: {
           content: false,
         },
@@ -24,6 +33,11 @@ export const blogsRouter = createTRPCRouter({
             },
           },
           comments: true,
+          // blog_tags: {
+          //   columns: {
+          //
+          //   },
+          // },
         },
       });
       return blogsList;
