@@ -1,6 +1,12 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
   parser: "@typescript-eslint/parser",
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      parser: "@typescript-eslint/parser",
+    },
+  ],
   parserOptions: {
     project: true,
   },

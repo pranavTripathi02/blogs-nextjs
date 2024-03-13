@@ -1,6 +1,6 @@
 import { HeartIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { RouterOutputs } from "~/trpc/shared";
+import { type RouterOutputs } from "~/trpc/shared";
 
 function BlogComments({
   comments,
