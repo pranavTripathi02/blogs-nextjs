@@ -59,7 +59,7 @@ function Navbar() {
       <div className="ms-auto flex gap-4">
         <Button
           variant="outline"
-          className="border-primary bg-none decoration-primary underline-offset-2 duration-0 hover:underline"
+          className="border-primary-custom decoration-primary-custom bg-none underline-offset-2 duration-0 hover:underline"
           asChild
         >
           <Link href="/register">Create account</Link>

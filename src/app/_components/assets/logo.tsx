@@ -6,12 +6,13 @@ export default function LogoSVG() {
       width="150"
       height="130"
       className="my-auto h-[48px] w-[72px]"
+      aria-label="site logo"
     >
       <path
         id="Selection #2"
         fill="currentColor"
         stroke="none"
-        stroke-width="4"
+        strokeWidth="4"
         d="M 11.00,61.64
            C 16.67,60.50 27.74,61.00 34.00,61.00
              34.00,61.00 74.00,61.00 74.00,61.00
