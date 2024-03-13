@@ -1,4 +1,6 @@
+import { eq } from "drizzle-orm";
 import { z } from "zod";
+import { blogs } from "~/db/schema/blogs";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 // import { posts } from "~/server/db/schema";
@@ -12,6 +14,23 @@ export const commentsRouter = createTRPCRouter({
       };
     }),
 });
+// getCommentsForBlog: publicProcedure
+//   .input(z.object({ blogId: z.number() }))
+//   .query(async ({ input, ctx }) => {
+//     const { blogId } = input;
+//     const comments = await ctx.db.query.blogs.findFirst({
+//       where: eq(blogs.id, blogId),
+//       columns: { id: true },
+//       with: {
+//         comments: {
+//           with: {
+//             commenter: true,
+//           },
+//         },
+//       },
+//     });
+//     return comments;
+//   }),
 // export const postRouter = createTRPCRouter({
 //   hello: publicProcedure
 //     .input(z.object({ text: z.string() }))

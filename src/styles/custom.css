@@ -1,0 +1,12 @@
+:root{
+    --custom-primary-val:            142.1 76.2% 36.3%;
+    --custom-primary-foreground-val: 355.7 100% 97.3%;
+}
+.dark {
+    --custom-primary-val:            142.1 70.6% 45.3%;
+    --custom-primary-foreground-val: 144.9 80.4% 10%;
+}
+:root{
+    --custom-primary: hsl(var(--custom-primary-val));
+    --custom-primary-foreground: hsl(var(--custom-primary-foreground-val));
+}

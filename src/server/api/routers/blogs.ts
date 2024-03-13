@@ -3,6 +3,8 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { blogs } from "~/db/schema/blogs";
+import { TRPCError } from "@trpc/server";
+import { comments } from "~/db/schema/comments";
 
 const sortByValues = ["likes", "views", "createdAt"] as const;
 const sortDir = ["asc", "desc"] as const;
@@ -30,9 +32,14 @@ export const blogsRouter = createTRPCRouter({
           author: {
             columns: {
               name: true,
+              username: true,
             },
           },
-          comments: true,
+          comments: {
+            columns: {
+              id: true,
+            },
+          },
           // blog_tags: {
           //   columns: {
           //
@@ -48,7 +55,33 @@ export const blogsRouter = createTRPCRouter({
       const { blogId } = input;
       const blog = await ctx.db.query.blogs.findFirst({
         where: eq(blogs.id, blogId),
+        with: {
+          comments: {
+            orderBy: desc(comments.createdAt),
+            with: {
+              commenter: {
+                columns: {
+                  username: true,
+                  name: true,
+                },
+                // with: {
+                //   profile: true,
+                // },
+              },
+            },
+          },
+          author: true,
+        },
+        columns: {
+          id: false,
+        },
       });
+      if (!blog) {
+        throw new TRPCError({
+          message: "Cannot find this blog",
+          code: "NOT_FOUND",
+        });
+      }
       return blog;
     }),
   createBlog: publicProcedure

@@ -11,7 +11,7 @@ function Leftbar() {
       {/* nav links */}
       <nav className="rounded-md bg-background p-2">
         <h2 className="mb-4 font-semibold text-primary">Links</h2>
-        <div className="ms-2 flex flex-col gap-4">
+        <div className="decoration-primary-custom ms-2 flex flex-col gap-4">
           <a className="underline-offset-2 hover:underline" href="">
             <span>Home</span>
           </a>
@@ -30,37 +30,33 @@ function Leftbar() {
       <nav className="rounded-md bg-background p-2">
         <h2 className="mb-4 font-semibold text-primary">Connect with us</h2>
         <div className="ms-2 flex gap-4 ">
-          <a href="#" className="group flex gap-2">
-            <GitHubLogoIcon
-              height={24}
-              width={24}
-              className="group-hover:text-accent"
-            />
-            {/* <span>Github</span> */}
+          <a
+            href="#"
+            title="Github"
+            className="hover:text-primary-custom flex gap-2"
+          >
+            <GitHubLogoIcon height={24} width={24} aria-label="github" />
           </a>
-          <a href="#" className="group flex gap-2">
-            <TwitterLogoIcon
-              height={24}
-              width={24}
-              className="group-hover:text-accent"
-            />
-            {/* <span>Twitter</span> */}
+          <a
+            href="#"
+            title="twitter"
+            className="hover:text-primary-custom flex gap-2"
+          >
+            <TwitterLogoIcon height={24} width={24} aria-label="twitter" />
           </a>
-          <a href="#" className="group flex gap-2">
-            <DiscordLogoIcon
-              height={24}
-              width={24}
-              className="group-hover:text-accent"
-            />
-            {/* <span>Discord</span> */}
+          <a
+            href="#"
+            title="Discord"
+            className="hover:text-primary-custom flex gap-2"
+          >
+            <DiscordLogoIcon height={24} width={24} aria-label="discord" />
           </a>
-          <a href="#" className="group flex gap-2">
-            <InstagramLogoIcon
-              height={24}
-              width={24}
-              className="group-hover:text-accent"
-            />
-            {/* <span>Mail</span> */}
+          <a
+            href="#"
+            title="Mail"
+            className="hover:text-primary-custom flex gap-2"
+          >
+            <InstagramLogoIcon height={24} width={24} aria-label="mail" />
           </a>
         </div>
       </nav>

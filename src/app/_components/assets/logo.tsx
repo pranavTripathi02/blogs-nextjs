@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 256 256">
-  <path id="Selection #2"
-        fill="currentColor" stroke="currentColor" stroke-width="1"
+export default function LogoSVG() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      width="150"
+      height="130"
+      className="my-auto h-[48px] w-[72px]"
+      aria-label="site logo"
+    >
+      <path
+        id="Selection #2"
+        fill="currentColor"
+        stroke="none"
+        strokeWidth="4"
         d="M 11.00,61.64
            C 16.67,60.50 27.74,61.00 34.00,61.00
              34.00,61.00 74.00,61.00 74.00,61.00
@@ -53,5 +64,8 @@
              77.67,143.69 78.75,135.43 81.70,131.00
              85.11,125.86 98.71,113.94 101.75,126.02
              101.98,127.21 101.93,128.77 101.75,130.00
-             101.75,130.00 94.00,173.00 94.00,173.00 Z" />
-</svg>
+             101.75,130.00 94.00,173.00 94.00,173.00 Z"
+      />
+    </svg>
+  );
+}
