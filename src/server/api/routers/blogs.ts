@@ -50,7 +50,7 @@ export const blogsRouter = createTRPCRouter({
       return blogsList;
     }),
   getBlogDetails: publicProcedure
-    .input(z.object({ blogId: z.number() }))
+    .input(z.object({ blogId: z.number() }).required())
     .query(async ({ input, ctx }) => {
       const { blogId } = input;
       const blog = await ctx.db.query.blogs.findFirst({
@@ -64,9 +64,6 @@ export const blogsRouter = createTRPCRouter({
                   username: true,
                   name: true,
                 },
-                // with: {
-                //   profile: true,
-                // },
               },
             },
           },

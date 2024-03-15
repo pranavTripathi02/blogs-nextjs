@@ -7,18 +7,6 @@ import { users } from "~/db/schema/users";
 // import { posts } from "~/server/db/schema";
 
 export const usersRouter = createTRPCRouter({
-  userName: publicProcedure
-    .input(z.object({ authorId: z.number() }))
-    .query(async ({ input, ctx }) => {
-      const { authorId } = input;
-      const userName = await ctx.db.query.users.findFirst({
-        columns: {
-          name: true,
-        },
-        where: eq(users.id, authorId),
-      });
-      return userName?.name;
-    }),
   register: publicProcedure
     .input(
       z.object({
@@ -34,9 +22,6 @@ export const usersRouter = createTRPCRouter({
         .insert(users)
         .values({ email, name, password, username });
       return userCreated;
-      // return {
-      //   comment: `${input.text}`,
-      // };
     }),
   login: publicProcedure
     .input(z.object({ username: z.string(), password: z.string() }))
@@ -54,4 +39,5 @@ export const usersRouter = createTRPCRouter({
       // password verify
       return userFound;
     }),
+  // refreshToken
 });

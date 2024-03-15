@@ -7,6 +7,7 @@ import * as blogsSchema from "./schema/blogs";
 import * as commentsSchema from "./schema/comments";
 import * as tagsSchema from "./schema/tags";
 import * as profilesSchema from "./schema/profiles";
+import * as blogTagsSchema from "./schema/blogTags";
 
 /**
  * Cache the database connection in development. This avoids creating a new connection on every HMR
@@ -27,5 +28,6 @@ export const db = drizzle(conn, {
     ...commentsSchema,
     ...tagsSchema,
     ...profilesSchema,
+    ...blogTagsSchema,
   },
 });

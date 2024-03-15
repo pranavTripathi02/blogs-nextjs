@@ -8,8 +8,12 @@ import Loading from "~/app/loading";
 import NotFound from "~/app/not-found";
 import MdComponent from "./mdComponent";
 
-async function BlogDetails({ params }: { params: { blog: string } }) {
-  const { blog: blogId } = params;
+async function BlogDetails({
+  params,
+}: {
+  params: { username: string; blog: string };
+}) {
+  const { username, blog: blogId } = params;
 
   let blog;
   try {
@@ -34,24 +38,35 @@ async function BlogDetails({ params }: { params: { blog: string } }) {
             {/* <div className="container mb-20 mt-2 md:px-2 lg:px-4 xl:px-8"> */}
             {/* interaction */}
             <div className="row-span-2 hidden max-w-fit sm:block">
-              <BlogInteraction likes={likes ?? 0} comments={comments.length} />
+              <BlogInteraction
+                id={parseInt(blogId)}
+                likes={likes ?? 0}
+                comments={comments.length}
+                views={views ?? 0}
+              />
             </div>
-            {/* blog content*/}
-            <div className="overflow-hidden rounded-lg pb-8">
-              <div className="h-[300px] w-full overflow-hidden object-cover lg:h-[500px]">
-                <Image
-                  src={imageUrl ?? ""}
-                  alt="blog image"
-                  height="850"
-                  width="1850"
-                />
-              </div>
-              <div className="overflow-scroll bg-background px-4 ">
-                <h2 className="my-4 text-3xl font-bold">{title}</h2>
-                <div className="px-4">
-                  {contentHtml && (
-                    <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-                  )}
+            <div className="overflow-hidden rounded-lg">
+              <div>
+                {/* blog image*/}
+                {imageUrl && (
+                  <div className="h-[300px] w-full overflow-hidden object-cover lg:h-[500px]">
+                    <Image
+                      src={imageUrl ?? ""}
+                      alt="blog image"
+                      height="850"
+                      width="1850"
+                    />
+                  </div>
+                )}
+                {/* blog content*/}
+                <div className="overflow-scroll-auto rounded-lg bg-background px-4 pb-8">
+                  <h2 className="py-4 text-3xl font-bold">{title}</h2>
+                  {/* blog tags */}
+                  <div className="px-4">
+                    {contentHtml && (
+                      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                    )}
+                  </div>
                 </div>
                 {/* comments */}
               </div>
@@ -61,7 +76,7 @@ async function BlogDetails({ params }: { params: { blog: string } }) {
             </div>
             {/* author details */}
             <div className="">
-              <AuthorDetails />
+              <AuthorDetails username={username} />
             </div>
           </div>
         )}

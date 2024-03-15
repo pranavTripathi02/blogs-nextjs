@@ -5,7 +5,7 @@ import { env } from "~/env";
 export default {
   schema: "./src/db/schema/*",
   driver: "better-sqlite",
-  out: "./src/db/drizzle/",
+  out: "./drizzle/",
   dbCredentials: {
     url: env.DATABASE_URL,
   },
