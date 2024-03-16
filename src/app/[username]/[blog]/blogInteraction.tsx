@@ -19,11 +19,15 @@ function BlogInteraction({
   likes,
   comments,
   views,
+  bookmarks,
+  shares,
 }: {
   id: number;
   likes: number;
   comments: number;
   views: number;
+  bookmarks: number;
+  shares: number;
 }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [blogLiked, setBlogLiked] = useState(false);
@@ -135,8 +139,7 @@ function BlogInteraction({
                   width={24}
                 />
               )}
-              {/* todo dynamic val */}
-              <span>32</span>
+              <span>{bookmarks}</span>
             </button>
           </div>
           {/* views */}
@@ -147,7 +150,6 @@ function BlogInteraction({
                 height={24}
                 width={24}
               />
-              {/* todo dynamic val */}
               <span>{views}</span>
             </button>
           </div>
@@ -169,7 +171,7 @@ function BlogInteraction({
                 height={24}
                 width={24}
               />
-              {/* <span>Share</span> */}
+              <span>{shares}</span>
             </button>
           </div>
         </div>
