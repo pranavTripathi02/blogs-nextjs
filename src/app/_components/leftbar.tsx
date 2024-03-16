@@ -7,7 +7,7 @@ import {
 
 function Leftbar() {
   return (
-    <aside className="flex flex-col gap-4 rounded-md">
+    <aside className="sticky top-0 flex flex-col gap-4 rounded-md">
       {/* nav links */}
       <nav className="rounded-md bg-background p-2">
         <h2 className="mb-4 font-semibold text-primary">Links</h2>

@@ -37,8 +37,8 @@
   }
  
   .dark {
-    --site-background: 0 0% 5%;
-    --background: 0 0% 3.9%;
+    --site-background: 0 0% 0%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 98%;
  
     --card: 0 0% 3.9%;

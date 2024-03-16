@@ -10,6 +10,7 @@
     "start": "next start",
     "db:generate": "drizzle-kit generate:sqlite",
     "db:push": "drizzle-kit push:sqlite",
+    "db:check":"drizzle-kit check:sqlite",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {

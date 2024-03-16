@@ -1,45 +1,32 @@
-import { HeartIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { type RouterOutputs } from "~/trpc/shared";
+import Comment from "./commentComponent";
+import { Textarea } from "~/components/ui/textarea";
 
 function BlogComments({
   comments,
 }: {
   comments: RouterOutputs["blogs"]["getBlogDetails"]["comments"];
 }) {
-  console.log(comments);
   return (
     <div className="my-8">
       <h3 className="text-lg font-bold">Comments</h3>
+      {/* todo: functionality */}
+      <div className="mt-4">
+        <Textarea
+          className="h-32 resize-none bg-background md:h-24"
+          placeholder="Add to the discussion."
+          maxLength={250}
+          autoComplete="off"
+        />
+        <p className="text-sm text-muted-foreground">
+          Please limit your comment to 250 characters.
+        </p>
+      </div>
       <div className="mt-4 space-y-4">
         {comments?.length &&
           comments.map((comment) => (
-            <div
-              key={comment.id}
-              className="rounded-lg bg-background px-4 pt-4"
-            >
-              <div className="flex items-center gap-4">
-                {/* author details */}
-                {/* author img */}
-                <Link
-                  href={`/${comment.commenter.username}`}
-                  className="capitalize"
-                >
-                  {comment.commenter.name}
-                </Link>
-                <span className="text-sm text-muted-foreground">
-                  {comment.createdAt.toLocaleDateString()}
-                </span>
-              </div>
-              {/* comment text */}
-              <p>{comment.content}</p>
-              {/* comment footer */}
-              <div className="flex w-full items-center justify-evenly border-t py-2">
-                <HeartIcon height={24} width={24} />
-                <HeartIcon height={24} width={24} />
-                <HeartIcon height={24} width={24} />
-                <HeartIcon height={24} width={24} />
-              </div>
+            <div key={comment.id}>
+              <Comment comment={comment} />
             </div>
           ))}
       </div>
