@@ -42,7 +42,7 @@ function Login() {
 
   const onFormSubmit = async (values: z.infer<typeof formSchema>) => {
     const { username, password } = values;
-    console.log(values);
+    // console.log(values);
     // const loginQuery = api.users.login.useQuery({ username, password });
     const post = await mutation.mutateAsync(
       { username, password },
@@ -66,7 +66,6 @@ function Login() {
         },
       },
     );
-    console.log(post);
     // form.reset();
   };
 

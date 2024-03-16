@@ -29,22 +29,23 @@ export const blogsRouter = createTRPCRouter({
           content: false,
         },
         with: {
-          author: {
+          author: true,
+          comments: true,
+          blogTags: {
             columns: {
-              name: true,
-              username: true,
+              id: false,
+              blogId: false,
+              tagId: false,
+            },
+            with: {
+              tag: {
+                columns: {
+                  id: true,
+                  tag: true,
+                },
+              },
             },
           },
-          comments: {
-            columns: {
-              id: true,
-            },
-          },
-          // blog_tags: {
-          //   columns: {
-          //
-          //   },
-          // },
         },
       });
       return blogsList;
@@ -67,7 +68,40 @@ export const blogsRouter = createTRPCRouter({
               },
             },
           },
-          author: true,
+          author: {
+            with: {
+              authoredBlogs: {
+                columns: {
+                  id: true,
+                  title: true,
+                },
+                with: {
+                  blogTags: {
+                    with: {
+                      tag: {
+                        columns: { tag: true, id: true },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          blogTags: {
+            // columns: {
+            //   id: false,
+            //   blogId: false,
+            //   tagId: false,
+            // },
+            with: {
+              tag: {
+                columns: {
+                  id: true,
+                  tag: true,
+                },
+              },
+            },
+          },
         },
         columns: {
           id: false,

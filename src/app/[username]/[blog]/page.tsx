@@ -1,12 +1,13 @@
 import { api } from "~/trpc/server";
 import BlogInteraction from "./blogInteraction";
 import BlogComments from "./blogComments";
-import AuthorDetails from "./authorDetails.tsx";
+import AuthorDetails from "./authorDetails";
 import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "~/app/loading";
 import NotFound from "~/app/not-found";
 import MdComponent from "./mdComponent";
+import Link from "next/link";
 
 async function BlogDetails({
   params,
@@ -25,8 +26,19 @@ async function BlogDetails({
     return <NotFound />;
   }
 
-  const { imageUrl, desc, content, likes, views, title, updatedAt, comments } =
-    blog;
+  const {
+    imageUrl,
+    author,
+    content,
+    likes,
+    views,
+    shares,
+    bookmarks,
+    title,
+    createdAt,
+    comments,
+    blogTags,
+  } = blog;
 
   const contentHtml = await MdComponent(content);
 
@@ -34,7 +46,7 @@ async function BlogDetails({
     <>
       <Suspense fallback={<Loading />}>
         {blog && (
-          <div className="grid-rows-auto container mb-20 mt-2 grid grid-flow-row grid-cols-[1fr] gap-4 sm:grid-cols-[min-content_1fr] md:px-2 lg:grid-cols-[min-content_3fr_1fr] lg:px-4 xl:px-8">
+          <div className="grid-rows-auto container mb-20 mt-2 grid grid-flow-row grid-cols-[1fr] gap-4 sm:grid-cols-[min-content_1fr] md:px-4 lg:grid-cols-[min-content_3fr_1.2fr] xl:px-8">
             {/* <div className="container mb-20 mt-2 md:px-2 lg:px-4 xl:px-8"> */}
             {/* interaction */}
             <div className="row-span-2 hidden max-w-fit sm:block">
@@ -59,10 +71,32 @@ async function BlogDetails({
                   </div>
                 )}
                 {/* blog content*/}
-                <div className="overflow-scroll-auto rounded-lg bg-background px-4 pb-8">
-                  <h2 className="py-4 text-3xl font-bold">{title}</h2>
-                  {/* blog tags */}
-                  <div className="px-4">
+                <div className="overflow-scroll-auto rounded-lg bg-background px-8 pb-8">
+                  <div className="space-y-4 py-4">
+                    <div>
+                      <span className="p-0 text-sm text-muted-foreground">
+                        Posted on {createdAt?.toDateString()}
+                      </span>
+                      <h2 className="text-3xl font-bold">{title}</h2>
+                    </div>
+                    {/* blog tags */}
+                    <div>
+                      {blogTags && (
+                        <div className="my-1 flex flex-wrap gap-2 overflow-x-hidden">
+                          {blogTags.map((tagInfo) => (
+                            <Link
+                              key={tagInfo.tag.id}
+                              href="#"
+                              className="hover:text-primary-custom rounded-xl bg-secondary px-2"
+                            >
+                              #{tagInfo.tag.tag}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="">
                     {contentHtml && (
                       <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
                     )}
@@ -76,7 +110,7 @@ async function BlogDetails({
             </div>
             {/* author details */}
             <div className="">
-              <AuthorDetails username={username} />
+              <AuthorDetails author={author} />
             </div>
           </div>
         )}

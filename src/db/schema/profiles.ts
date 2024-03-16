@@ -2,6 +2,7 @@ import { relations, sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { users } from "./users";
 import { comments } from "./comments";
+import { blogs } from "./blogs";
 
 export const profiles = sqliteTable("profiles", {
   id: integer("id").primaryKey(),
@@ -27,11 +28,15 @@ export const profiles = sqliteTable("profiles", {
 });
 
 export const profilesRelations = relations(profiles, ({ one, many }) => ({
-  comments: many(comments),
+  comments: many(comments, { relationName: "author" }),
   userMail: one(users, {
     fields: [profiles.userMail],
     references: [users.email],
   }),
+  authoredBlogs: many(blogs, { relationName: "author" }),
+  bookmarks: many(blogs, { relationName: "bookmarkedBlogs" }),
+  likedBlogs: many(blogs, { relationName: "likedBlogs" }),
+  likedComments: many(comments, { relationName: "likedComments" }),
 }));
 
 export type TProfile = typeof profiles.$inferSelect;

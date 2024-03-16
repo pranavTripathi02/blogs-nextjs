@@ -9,8 +9,7 @@ function Comment({
 }: {
   comment: RouterOutputs["blogs"]["getBlogDetails"]["comments"][0];
 }) {
-  const handleCommentLike = (commentId: number) => {
-    console.log("liking", commentId);
+  const handleCommentLike = (_commentId: number) => {
     setCommentLiked((prv) => !prv);
   };
   const [commentLiked, setCommentLiked] = useState(false);

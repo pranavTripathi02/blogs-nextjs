@@ -24,8 +24,12 @@ export const blogs = sqliteTable("blogs", {
 });
 
 export const blogsRelations = relations(blogs, ({ one, many }) => ({
-  author: one(profiles),
-  comments: many(comments),
+  author: one(profiles, {
+    fields: [blogs.authorId],
+    references: [profiles.id],
+    relationName: "author",
+  }),
+  comments: many(comments, { relationName: "blogComments" }),
   blogTags: many(blogTags),
 }));
 
