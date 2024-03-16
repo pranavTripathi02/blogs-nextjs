@@ -14,12 +14,13 @@ async function BlogDetails({
 }: {
   params: { username: string; blog: string };
 }) {
-  const { username, blog: blogId } = params;
+  const { blog } = params;
+  const blogId = parseInt(blog);
 
-  let blog;
+  let blogFound;
   try {
-    blog = await api.blogs.getBlogDetails.query({
-      blogId: parseInt(blogId),
+    blogFound = await api.blogs.getBlogDetails.query({
+      blogId: blogId,
     });
   } catch (err) {
     console.error(err);
@@ -38,7 +39,7 @@ async function BlogDetails({
     createdAt,
     comments,
     blogTags,
-  } = blog;
+  } = blogFound;
 
   const contentHtml = await MdComponent(content);
 
@@ -51,10 +52,12 @@ async function BlogDetails({
             {/* interaction */}
             <div className="row-span-2 hidden max-w-fit sm:block">
               <BlogInteraction
-                id={parseInt(blogId)}
+                id={blogId}
                 likes={likes ?? 0}
                 comments={comments.length}
                 views={views ?? 0}
+                shares={shares ?? 0}
+                bookmarks={bookmarks ?? 0}
               />
             </div>
             <div className="overflow-hidden rounded-lg">
@@ -110,7 +113,7 @@ async function BlogDetails({
             </div>
             {/* author details */}
             <div className="">
-              <AuthorDetails author={author} />
+              <AuthorDetails author={author} blogId={blogId} />
             </div>
           </div>
         )}

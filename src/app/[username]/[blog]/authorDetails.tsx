@@ -49,36 +49,40 @@ async function AuthorDetails({
         </div>
       </div>
       {/* Author blogs */}
-      <div className="rounded-lg bg-background py-4">
-        <h4 className="px-4 pb-4 text-lg">
-          More from{" "}
-          <span className="text-primary-custom capitalize">{name}</span>
-        </h4>
-        {author.authoredBlogs
-          ?.filter(({ id }) => id !== blogId)
-          .map(({ id, title, blogTags }) => {
-            const blogUrl = `/${author.username}/${id}`;
-            return (
-              <div key={id} className="group border-t py-4">
-                <div className="px-4">
-                  <Link href={blogUrl}>
-                    <h5 className="group-hover:text-primary-custom">{title}</h5>
-                    <div className="my-1 flex flex-wrap gap-2 overflow-x-hidden">
-                      {blogTags.map((tagInfo) => (
-                        <span
-                          key={tagInfo.tag.id}
-                          className="text-sm opacity-50 group-hover:opacity-100"
-                        >
-                          #{tagInfo.tag.tag}
-                        </span>
-                      ))}
-                    </div>
-                  </Link>
+      {author.authoredBlogs && (
+        <div className="rounded-lg bg-background py-4">
+          <h4 className="px-4 pb-4 text-lg">
+            More from{" "}
+            <span className="text-primary-custom capitalize">{name}</span>
+          </h4>
+          {author.authoredBlogs
+            .filter(({ id }) => id !== blogId)
+            .map(({ id, title, blogTags }) => {
+              const blogUrl = `/${author.username}/${id}`;
+              return (
+                <div key={id} className="group border-t py-4">
+                  <div className="px-4">
+                    <Link href={blogUrl}>
+                      <h5 className="group-hover:text-primary-custom">
+                        {title}
+                      </h5>
+                      <div className="my-1 flex flex-wrap gap-2 overflow-x-hidden">
+                        {blogTags.map((tagInfo) => (
+                          <span
+                            key={tagInfo.tag.id}
+                            className="text-sm opacity-50 group-hover:opacity-100"
+                          >
+                            #{tagInfo.tag.tag}
+                          </span>
+                        ))}
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-      </div>
+              );
+            })}
+        </div>
+      )}
     </aside>
   );
 }
