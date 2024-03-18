@@ -4,7 +4,7 @@ import { profiles } from "./profiles";
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey(),
-  email: text("email").notNull(),
+  email: text("email").unique().notNull(),
   password: text("password", { length: 24 }).notNull(),
   createdAt: integer("created_at", { mode: "timestamp" })
     .notNull()
