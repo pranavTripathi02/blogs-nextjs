@@ -6,7 +6,7 @@ import Loading from "./loading";
 
 export default async function Home() {
   return (
-    <div className="container mb-20 mt-2 flex justify-center gap-4 lg:px-4 xl:px-8">
+    <div className="container mb-20 flex justify-center gap-4 lg:px-4 xl:px-8">
       {/* leftbar */}
       <div className="hidden max-w-72 md:block">
         <Leftbar />

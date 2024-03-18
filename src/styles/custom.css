@@ -10,3 +10,18 @@
     --custom-primary: hsl(var(--custom-primary-val));
     --custom-primary-foreground: hsl(var(--custom-primary-foreground-val));
 }
+
+/* a.anchor { */
+/*     display: block; */
+/*     position: relative; */
+/*     top: -250px; */
+/*     margin:250px 0; */
+/*     visibility: hidden; */
+/* } */
+.anchor
+:target::before {
+  content: "";
+  display: block;
+  height: 160px; /* fixed header height*/
+  margin: -260px 0 0; /* negative fixed header height */
+}

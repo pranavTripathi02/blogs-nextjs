@@ -14,14 +14,16 @@ export const blogsRouter = createTRPCRouter({
   getBlogs: publicProcedure
     .input(
       z.object({
+        authorId: z.number().optional(),
         offset: z.number().optional().default(0),
         sortBy: z.enum(sortByValues).optional().default("createdAt"),
         sortDir: z.enum(sortDir).optional().default("desc"),
       }),
     )
     .query(async ({ input, ctx }) => {
-      const { sortDir, sortBy, offset } = input;
+      const { authorId, sortDir, sortBy, offset } = input;
       const blogsList = await ctx.db.query.blogs.findMany({
+        where: authorId ? eq(blogs.authorId, authorId) : undefined,
         limit: 5,
         offset,
         orderBy: [sortDir == "asc" ? asc(blogs[sortBy]) : desc(blogs[sortBy])],

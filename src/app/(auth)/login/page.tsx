@@ -19,8 +19,8 @@ import { useRouter } from "next/navigation";
 import { useToast } from "~/components/ui/use-toast";
 
 const formSchema = z.object({
-  username: z
-    .string({ required_error: "Username is required" })
+  email: z
+    .string({ required_error: "email is required" })
     .min(1, { message: "Field cannot be empty" }),
   password: z.string({ required_error: "Password is required" }).min(1, {
     message: "Field cannot be empty",
@@ -31,7 +31,7 @@ function Login() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -41,11 +41,11 @@ function Login() {
   const { toast } = useToast();
 
   const onFormSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { username, password } = values;
+    const { email, password } = values;
     // console.log(values);
     // const loginQuery = api.users.login.useQuery({ username, password });
     const post = await mutation.mutateAsync(
-      { username, password },
+      { email, password },
       {
         onError: () => {
           toast({
@@ -80,23 +80,23 @@ function Login() {
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onFormSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input
-                    autoComplete="username"
-                    placeholder="Username"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {/* <FormField */}
+          {/*   control={form.control} */}
+          {/*   name="username" */}
+          {/*   render={({ field }) => ( */}
+          {/*     <FormItem> */}
+          {/*       <FormLabel>Username</FormLabel> */}
+          {/*       <FormControl> */}
+          {/*         <Input */}
+          {/*           autoComplete="username" */}
+          {/*           placeholder="Username" */}
+          {/*           {...field} */}
+          {/*         /> */}
+          {/*       </FormControl> */}
+          {/*       <FormMessage /> */}
+          {/*     </FormItem> */}
+          {/*   )} */}
+          {/* /> */}
           <FormField
             control={form.control}
             name="password"
