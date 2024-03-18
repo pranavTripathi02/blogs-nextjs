@@ -14,6 +14,11 @@ const profilesRouter = createTRPCRouter({
         columns: {
           updatedAt: false,
         },
+        with: {
+          comments: true,
+          likedBlogs: true,
+          authoredBlogs: true,
+        },
       });
       if (!userFound) {
         throw new TRPCError({

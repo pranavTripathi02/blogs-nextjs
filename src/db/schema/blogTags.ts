@@ -8,11 +8,11 @@ export const blogTags = sqliteTable(
   {
     id: integer("id").primaryKey(),
     blogId: integer("blog_id")
-      .notNull()
-      .references(() => blogs.id),
+      .references(() => blogs.id)
+      .notNull(),
     tagId: integer("tag_id")
-      .notNull()
-      .references(() => tags.id),
+      .references(() => tags.id)
+      .notNull(),
   },
   (t) => {
     return {

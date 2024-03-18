@@ -107,7 +107,7 @@ async function BlogDetails({
                 </div>
                 {/* comments */}
               </div>
-              <div id="comments" className="px-4">
+              <div className="px-4">
                 <BlogComments comments={comments} />
               </div>
             </div>

@@ -10,10 +10,12 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
   const blogDate = createdAt?.toDateString();
   const blogUrl = author.username.replace("/ /g", "") + "/" + blog.id;
   return (
-    <div className="relative flex flex-col space-y-2 rounded-md bg-background p-2 shadow-md hover:shadow-lg md:space-y-0 md:px-16">
-      <h2 className="hover:text-primary-custom cursor-pointer text-2xl font-bold">
-        <Link href={blogUrl}>{title}</Link>
-      </h2>
+    <div className="relative flex flex-col space-y-2 rounded-md bg-background p-2 shadow-sm hover:shadow-lg md:space-y-0 md:px-16">
+      <Link href={blogUrl}>
+        <h2 className="hover:text-primary-custom cursor-pointer text-2xl font-bold">
+          {title}
+        </h2>
+      </Link>
       {/* tags */}
       <div>
         {blogTags && (

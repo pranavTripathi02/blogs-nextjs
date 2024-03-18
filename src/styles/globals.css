@@ -36,10 +36,10 @@
     --radius: 0.5rem;
   }
  
-  .dark {
+  [data-theme="dark"] {
     --site-background: 0 0% 0%;
     --background: 0 0% 8%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 95%;
  
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;

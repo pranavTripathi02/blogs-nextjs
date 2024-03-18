@@ -7,10 +7,10 @@ import { blogTags } from "./blogTags";
 export const blogs = sqliteTable("blogs", {
   id: integer("id").primaryKey(),
   authorId: integer("author_id")
-    .notNull()
     .references(() => profiles.id, {
       onDelete: "cascade",
-    }),
+    })
+    .notNull(),
   title: text("title").notNull(),
   content: text("content").notNull(),
   desc: text("desc"),
@@ -27,9 +27,11 @@ export const blogsRelations = relations(blogs, ({ one, many }) => ({
   author: one(profiles, {
     fields: [blogs.authorId],
     references: [profiles.id],
-    relationName: "author",
+    relationName: "blogAuthor",
   }),
   comments: many(comments, { relationName: "blogComments" }),
+  bookmarkedBy: many(profiles),
+  likedBy: many(profiles, { relationName: "likedBlogs" }),
   blogTags: many(blogTags),
 }));
 

@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/navbar";
 import { Toaster } from "~/components/ui/toaster";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,10 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${inter.variable}`}>
-        <Navbar />
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <ThemeProvider
+            disableTransitionOnChange
+            storageKey="theme"
+            themes={["system", "light", "dark"]}
+          >
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </TRPCReactProvider>
         <Toaster />
       </body>
     </html>

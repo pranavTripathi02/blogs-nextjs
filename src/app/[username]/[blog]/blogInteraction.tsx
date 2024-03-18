@@ -162,7 +162,7 @@ function BlogInteraction({
                   title: "Share",
                   description: "Blog link copied to your clipboard",
                 });
-                copyLinkToClipboard;
+                void copyLinkToClipboard();
               }}
               title="Share"
             >

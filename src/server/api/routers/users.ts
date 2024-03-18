@@ -20,15 +20,15 @@ export const usersRouter = createTRPCRouter({
       const { username, password, name, email } = input;
       const userCreated = await ctx.db
         .insert(users)
-        .values({ email, name, password, username });
+        .values({ email, password });
       return userCreated;
     }),
   login: publicProcedure
-    .input(z.object({ username: z.string(), password: z.string() }))
+    .input(z.object({ email: z.string(), password: z.string() }))
     .mutation(async ({ input, ctx }) => {
-      const { username, password } = input;
+      const { email, password } = input;
       const userFound = await ctx.db.query.users.findFirst({
-        where: eq(users.username, username),
+        where: eq(users.email, email),
       });
       if (!userFound) {
         throw new TRPCError({
