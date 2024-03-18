@@ -7,27 +7,27 @@ import {
 
 function Leftbar() {
   return (
-    <aside className="sticky top-0 flex flex-col gap-4 rounded-md">
+    <aside className="sticky top-20 flex flex-col gap-4">
       {/* nav links */}
-      <nav className="rounded-md bg-background p-2">
+      <nav className="rounded-lg bg-background p-2 shadow-sm">
         <h2 className="mb-4 font-semibold text-primary">Links</h2>
         <div className="decoration-primary-custom ms-2 flex flex-col gap-4">
-          <a className="underline-offset-2 hover:underline" href="">
+          <a className="underline-offset-2 hover:underline" href="/">
             <span>Home</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a className="underline-offset-2 hover:underline" href="/help">
             <span>Help</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a className="underline-offset-2 hover:underline" href="/about">
             <span>About</span>
           </a>
-          <a className="underline-offset-2 hover:underline" href="">
+          <a className="underline-offset-2 hover:underline" href="/contact">
             <span>Contact</span>
           </a>
         </div>
       </nav>
       {/* social links */}
-      <nav className="rounded-md bg-background p-2">
+      <nav className="rounded-lg bg-background p-2 shadow-sm">
         <h2 className="mb-4 font-semibold text-primary">Connect with us</h2>
         <div className="ms-2 flex gap-4 ">
           <a

@@ -13,7 +13,7 @@ function BlogCardImage({
   const { imageUrl, author, id } = blog;
   const blogUrl = "/" + author.username + "/" + id;
   return (
-    <div className="group w-full overflow-hidden rounded-md bg-background shadow-md hover:shadow-lg">
+    <div className="group w-full overflow-hidden rounded-md bg-background shadow-sm hover:shadow-md">
       <Link href={blogUrl}>
         <AspectRatio ratio={16 / 9} className="cursor-pointer overflow-hidden ">
           <Image

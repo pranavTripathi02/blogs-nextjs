@@ -18,7 +18,7 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-20 flex h-16 w-full items-center gap-4 border-b bg-background p-2">
+    <div className="sticky top-0 z-20 mb-4 flex h-16 w-full items-center gap-4 bg-background p-2 shadow-sm">
       {/* Sidebar */}
       <Sheet defaultOpen={false}>
         {/* sidebar btn */}
@@ -46,9 +46,9 @@ function Navbar() {
         </Link>
       </div>
       {/* searchbar */}
-      <div className="w-72 focus:w-1/2 active:w-1/2">
+      <div className="w-72 duration-300 focus-within:w-1/2 focus:outline-2">
         <Input
-          className="hidden md:block"
+          className="focus-visible:ring-primary-custom hidden focus:outline-2 md:block"
           type="text"
           value={searchTerm}
           onChange={(e) => updateSearch(e.target.value)}
