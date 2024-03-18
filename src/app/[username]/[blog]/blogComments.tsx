@@ -9,7 +9,11 @@ function BlogComments({
 }) {
   return (
     <div className="my-8">
-      <h3 className="text-lg font-bold">Comments</h3>
+      <h3 className="text-lg font-bold">
+        <a id="comments" className="pt-16">
+          Comments
+        </a>
+      </h3>
       {/* todo: functionality */}
       <div className="mt-4">
         <Textarea

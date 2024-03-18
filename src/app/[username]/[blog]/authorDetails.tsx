@@ -1,13 +1,9 @@
-import { RouterOutputs } from "~/trpc/shared";
-
-import { Avatar } from "@radix-ui/react-avatar";
+import { type RouterOutputs } from "~/trpc/shared";
 import Image from "next/image";
 import { Button } from "~/components/ui/button";
 import Link from "next/link";
 
-// import { api } from "~/trpc/server";
-
-async function AuthorDetails({
+function AuthorDetails({
   author,
   blogId,
 }: {
@@ -20,14 +16,14 @@ async function AuthorDetails({
       {/* Author details */}
       <div className="relative overflow-hidden rounded-lg bg-background px-4 py-4">
         <Link href={`/${username}`} className="hover:text-primary-custom">
-          <span className="absolute left-0 right-0 top-0 z-[1] h-10 w-full bg-primary"></span>
+          <span className="absolute left-0 right-0 top-0 z-[1] h-10 w-full bg-gradient-to-b from-primary via-90% to-primary/80"></span>
           <div className="relative z-10 my-4 flex items-center gap-4">
             <Image
               src={imageUrl ?? ""}
               alt="author profile image"
               height={250}
               width={250}
-              className="h-16 w-16 rounded-full outline outline-primary-foreground"
+              className="ring-primary-custom h-16 w-16 rounded-full shadow-md shadow-primary ring-2"
             />
             <div className="pt-4 lg:pt-0">
               <h3 className="text-xl font-bold capitalize xl:text-2xl">
@@ -60,9 +56,9 @@ async function AuthorDetails({
             .map(({ id, title, blogTags }) => {
               const blogUrl = `/${author.username}/${id}`;
               return (
-                <div key={id} className="group border-t py-4">
+                <div key={id} className="border-t py-4">
                   <div className="px-4">
-                    <Link href={blogUrl}>
+                    <Link href={blogUrl} className="group">
                       <h5 className="group-hover:text-primary-custom">
                         {title}
                       </h5>
