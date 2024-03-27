@@ -22,18 +22,14 @@ function AuthorDetails({
           <div className="relative z-10 my-4 flex items-center gap-4">
             {image ? (
               <Image
-                src={imageUrl}
+                src={image}
                 alt="author profile image"
                 height={250}
                 width={250}
                 className="h-16 w-16 overflow-hidden rounded-full text-center text-xs shadow-md shadow-primary ring-2 ring-primary-custom"
               />
             ) : (
-              <AvatarIcon
-                width={64}
-                height={64}
-                className="rounded-full bg-white"
-              />
+              <AvatarIcon className="h-16 w-16 rounded-full bg-foreground text-background" />
             )}
             <div className="pt-4 lg:pt-0">
               <h3 className="text-xl font-bold capitalize xl:text-2xl">

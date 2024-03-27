@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import { type MouseEvent, useState } from "react";
 import { toast } from "~/components/ui/use-toast";
 import UnauthorizedDialog from "~/app/_components/unauthorizedDialog";
+import { useSession } from "next-auth/react";
 
 function BlogInteraction({
   id,
@@ -34,21 +35,31 @@ function BlogInteraction({
   const [blogBookmarked, setBlogBookmarked] = useState(false);
   const currentPath = usePathname();
 
+  const { status } = useSession();
+
+  const unauthorizedAction = () => {
+    setIsDialogOpen(true);
+  };
+
   const handleBlogLike = (
-    _e: MouseEvent<HTMLButtonElement>,
+    e: MouseEvent<HTMLButtonElement>,
     _blogId: number,
   ) => {
-    setIsDialogOpen(true);
-    // e.currentTarget?.classList.add("animate-ping");
-    // setBlogLiked((prv) => !prv);
+    if (status === "unauthenticated") unauthorizedAction();
+    else {
+      e.currentTarget?.classList.add("animate-ping");
+      setBlogLiked((prv) => !prv);
+    }
   };
   const handleBlogBookmark = (
-    _e: MouseEvent<HTMLButtonElement>,
+    e: MouseEvent<HTMLButtonElement>,
     _blogId: number,
   ) => {
-    setIsDialogOpen(true);
-    // e.currentTarget?.classList.add("animate-ping");
-    // setBlogBookmarked((prv) => !prv);
+    if (status === "unauthenticated") unauthorizedAction();
+    else {
+      e.currentTarget?.classList.add("animate-ping");
+      setBlogBookmarked((prv) => !prv);
+    }
   };
   const copyLinkToClipboard = async () => {
     const baseUrl = process.env.VERCEL_URL

@@ -17,7 +17,7 @@ import Image from "next/image";
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, status, update } = useSession();
+  const { data, status } = useSession();
   // const { user } = data;
 
   const updateSearch = (newSearch: string) => {

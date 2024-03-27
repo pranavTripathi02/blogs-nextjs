@@ -15,7 +15,7 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import Link from "next/link";
 import { api } from "~/trpc/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useToast } from "~/components/ui/use-toast";
 
 const formSchema = z.object({
@@ -37,14 +37,14 @@ function Login() {
   });
 
   const mutation = api.users.login.useMutation();
-  const router = useRouter();
+  // const router = useRouter();
   const { toast } = useToast();
 
   const onFormSubmit = async (values: z.infer<typeof formSchema>) => {
     const { email, password } = values;
     // console.log(values);
     // const loginQuery = api.users.login.useQuery({ username, password });
-    const post = await mutation.mutateAsync(
+    await mutation.mutateAsync(
       { email, password },
       {
         onError: () => {
@@ -73,7 +73,7 @@ function Login() {
     <div className="container my-2 h-fit min-w-[20rem] max-w-[30rem] space-y-8 rounded-md bg-background p-8">
       <h1 className="text-xl">
         Sign into your
-        <span className="bg-gradient-24 rounded-lg from-primary from-50% bg-clip-text px-1 tracking-tighter text-transparent">
+        <span className="rounded-lg bg-gradient-24 from-primary from-50% bg-clip-text px-1 tracking-tighter text-transparent">
           nlogX
         </span>
         account

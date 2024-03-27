@@ -90,7 +90,7 @@ async function BlogDetails({
                             <Link
                               key={tagInfo.tag.id}
                               href="#"
-                              className="hover:text-primary-custom rounded-xl bg-secondary px-2"
+                              className="rounded-xl bg-secondary px-2 hover:text-primary-custom"
                             >
                               #{tagInfo.tag.tag}
                             </Link>
