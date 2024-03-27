@@ -1,18 +1,18 @@
 import { AvatarIcon, ChatBubbleIcon, HeartIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 import type { RouterOutputs } from "~/trpc/shared";
 
 function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
   // TODO: add tags
   const { title, author, desc, likes, createdAt, blogTags, comments } = blog;
+  const { image } = author.user;
   const blogDate = createdAt?.toDateString();
   const blogUrl = author.username.replace("/ /g", "") + "/" + blog.id;
   return (
     <div className="relative flex flex-col space-y-2 rounded-md bg-background p-2 shadow-sm hover:shadow-lg md:space-y-0 md:px-16">
       <Link href={blogUrl}>
-        <h2 className="hover:text-primary-custom cursor-pointer text-2xl font-bold">
+        <h2 className="cursor-pointer text-2xl font-bold hover:text-primary-custom">
           {title}
         </h2>
       </Link>
@@ -24,7 +24,7 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
               <Link
                 key={tagInfo.tag.id}
                 href="#"
-                className="hover:text-primary-custom rounded-xl bg-secondary px-2 py-1 text-sm"
+                className="rounded-xl bg-secondary px-2 py-1 text-sm hover:text-primary-custom"
               >
                 #{tagInfo.tag.tag}
               </Link>
@@ -39,18 +39,20 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
           className="mb-4 flex w-fit cursor-pointer space-x-2 md:block md:space-x-0"
         >
           <div className="left-4 inline-block overflow-hidden md:absolute">
-            <Suspense fallback={<AvatarIcon />}>
+            {image ? (
               <Image
-                src={author.imageUrl ?? ""}
+                src={""}
                 alt="user img"
                 className="h-10 w-10 rounded-full text-center text-xs"
                 width={100}
                 height={100}
               />
-            </Suspense>
+            ) : (
+              <AvatarIcon width={42} height={42} />
+            )}
           </div>
           <div className="flex flex-col">
-            <span className="text capitalize">{author.name}</span>
+            <span className="text capitalize">{author.username}</span>
             <span className="text-xs">{blogDate ?? "date"}</span>
           </div>
         </Link>

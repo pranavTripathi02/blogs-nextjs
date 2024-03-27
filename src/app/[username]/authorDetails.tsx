@@ -1,4 +1,5 @@
 import {
+  AvatarIcon,
   DiscordLogoIcon,
   GitHubLogoIcon,
   InstagramLogoIcon,
@@ -16,7 +17,6 @@ async function AuthorDetails({
   profile: RouterOutputs["profiles"]["getProfile"];
 }) {
   const {
-    name,
     id,
     about,
     github,
@@ -24,9 +24,11 @@ async function AuthorDetails({
     twitter,
     facebook,
     username,
-    imageUrl,
     createdAt,
+    user,
   } = profile;
+
+  const { image, name } = user;
   const authorBlogs = await api.blogs.getBlogs.query({ authorId: id });
 
   return (
@@ -36,13 +38,21 @@ async function AuthorDetails({
         <span className="absolute left-0 right-0 top-0 h-16 bg-gradient-to-b from-primary via-90% to-primary/80" />
         {/* image and name */}
         <div className="relative z-10 flex flex-col items-center py-4">
-          <Image
-            src={imageUrl ?? " "}
-            alt="User image"
-            className="mb-2 h-40 w-40 rounded-full shadow-lg shadow-primary outline outline-primary-foreground"
-            width={250}
-            height={250}
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt="User image"
+              className="mb-2 h-40 w-40 rounded-full shadow-lg shadow-primary outline outline-primary-foreground"
+              width={250}
+              height={250}
+            />
+          ) : (
+            <AvatarIcon
+              width={160}
+              height={160}
+              className="rounded-full bg-white"
+            />
+          )}
           <h1 className="text-2xl font-bold">{name}</h1>
           <p className="text-lg font-bold text-muted-foreground">@{username}</p>
         </div>

@@ -18,8 +18,8 @@ function Comment({
       {/* author details */}
       {/* author img */}
       <div className="mb-2 flex flex-col items-start">
-        <Link href={`/${comment.commenter.username}`} className="capitalize">
-          {comment.commenter.name}
+        <Link href={`/${comment.commenter.username}`}>
+          {comment.commenter?.username}
         </Link>
         <span className="text-sm font-light text-muted-foreground">
           {comment.createdAt.toLocaleDateString()}

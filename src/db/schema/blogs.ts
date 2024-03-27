@@ -3,6 +3,7 @@ import { relations } from "drizzle-orm";
 import { comments } from "./comments";
 import { profiles } from "./profiles";
 import { blogTags } from "./blogTags";
+import { profileBookmarkedBlogs, profileLikedBlogs } from ".";
 
 export const blogs = sqliteTable("blogs", {
   id: integer("id").primaryKey(),
@@ -30,8 +31,8 @@ export const blogsRelations = relations(blogs, ({ one, many }) => ({
     relationName: "blogAuthor",
   }),
   comments: many(comments, { relationName: "blogComments" }),
-  bookmarkedBy: many(profiles),
-  likedBy: many(profiles, { relationName: "likedBlogs" }),
+  bookmarkedBy: many(profileBookmarkedBlogs),
+  likedBy: many(profileLikedBlogs),
   blogTags: many(blogTags),
 }));
 

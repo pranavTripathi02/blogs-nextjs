@@ -18,6 +18,13 @@ const profilesRouter = createTRPCRouter({
           comments: true,
           likedBlogs: true,
           authoredBlogs: true,
+          user: {
+            columns: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
         },
       });
       if (!userFound) {

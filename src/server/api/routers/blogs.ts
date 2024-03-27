@@ -31,7 +31,17 @@ export const blogsRouter = createTRPCRouter({
           content: false,
         },
         with: {
-          author: true,
+          author: {
+            with: {
+              user: {
+                columns: {
+                  name: true,
+                  email: true,
+                  image: true,
+                },
+              },
+            },
+          },
           comments: true,
           blogTags: {
             columns: {
@@ -65,13 +75,19 @@ export const blogsRouter = createTRPCRouter({
               commenter: {
                 columns: {
                   username: true,
-                  name: true,
                 },
               },
             },
           },
           author: {
             with: {
+              user: {
+                columns: {
+                  name: true,
+                  email: true,
+                  image: true,
+                },
+              },
               authoredBlogs: {
                 columns: {
                   id: true,

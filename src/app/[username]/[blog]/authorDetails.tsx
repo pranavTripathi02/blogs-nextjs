@@ -2,6 +2,7 @@ import { type RouterOutputs } from "~/trpc/shared";
 import Image from "next/image";
 import { Button } from "~/components/ui/button";
 import Link from "next/link";
+import { AvatarIcon } from "@radix-ui/react-icons";
 
 function AuthorDetails({
   author,
@@ -10,7 +11,8 @@ function AuthorDetails({
   author: RouterOutputs["blogs"]["getBlogDetails"]["author"];
   blogId: number;
 }) {
-  const { username, imageUrl, name, about, createdAt } = author;
+  const { username, about, createdAt, user } = author;
+  const { image, name } = user;
   return (
     <aside className="flex w-full flex-col gap-4">
       {/* Author details */}
@@ -18,13 +20,21 @@ function AuthorDetails({
         <Link href={`/${username}`} className="hover:text-primary-custom">
           <span className="absolute left-0 right-0 top-0 z-[1] h-10 w-full bg-gradient-to-b from-primary via-90% to-primary/80"></span>
           <div className="relative z-10 my-4 flex items-center gap-4">
-            <Image
-              src={imageUrl ?? ""}
-              alt="author profile image"
-              height={250}
-              width={250}
-              className="ring-primary-custom h-16 w-16 rounded-full shadow-md shadow-primary ring-2"
-            />
+            {image ? (
+              <Image
+                src={imageUrl}
+                alt="author profile image"
+                height={250}
+                width={250}
+                className="h-16 w-16 overflow-hidden rounded-full text-center text-xs shadow-md shadow-primary ring-2 ring-primary-custom"
+              />
+            ) : (
+              <AvatarIcon
+                width={64}
+                height={64}
+                className="rounded-full bg-white"
+              />
+            )}
             <div className="pt-4 lg:pt-0">
               <h3 className="text-xl font-bold capitalize xl:text-2xl">
                 {name}
@@ -49,7 +59,7 @@ function AuthorDetails({
         <div className="rounded-lg bg-background py-4">
           <h4 className="px-4 pb-4 text-lg">
             More from{" "}
-            <span className="text-primary-custom capitalize">{name}</span>
+            <span className="capitalize text-primary-custom">{name}</span>
           </h4>
           {author.authoredBlogs
             .filter(({ id }) => id !== blogId)

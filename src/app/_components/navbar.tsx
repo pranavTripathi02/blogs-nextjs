@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  AvatarIcon,
+  ChevronDownIcon,
+  HamburgerMenuIcon,
+} from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import Leftbar from "./leftbar";
 import Link from "next/link";
@@ -59,16 +63,18 @@ function Navbar() {
         />
       </div>
       {/* user */}
-      <div className="ms-auto">
+      <div className="me-4 ms-auto">
         {data?.user ? (
-          <div>
+          <div className="flex cursor-pointer items-center space-x-2 rounded-md px-4 py-2 hover:bg-muted">
             {data?.user.image ? (
               <div className="size-10 rounded-full">
                 <Image src={data?.user.image} alt="user image" fill />
               </div>
             ) : (
-              <span className="block">{data?.user.name}</span>
+              <AvatarIcon width={24} height={24} className="rounded-full" />
             )}
+            <span className="block">{data?.user.name}</span>
+            <ChevronDownIcon width={16} height={16} />
           </div>
         ) : status === "unauthenticated" ? (
           <div className="flex gap-4">

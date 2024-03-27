@@ -10,7 +10,7 @@ export const comments = sqliteTable("comments", {
     .references(() => blogs.id, { onDelete: "cascade" }),
   authorId: text("author_id")
     .references(() => profiles.id, {
-      onDelete: "set null",
+      onDelete: "cascade",
     })
     .notNull(),
   content: text("content", { length: 250 }).notNull(),
@@ -19,7 +19,7 @@ export const comments = sqliteTable("comments", {
   updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
 });
 
-export const commentsRelations = relations(comments, ({ one, many }) => ({
+export const commentsRelations = relations(comments, ({ one }) => ({
   blog: one(blogs, {
     fields: [comments.blogId],
     references: [blogs.id],
@@ -28,9 +28,7 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
   commenter: one(profiles, {
     fields: [comments.authorId],
     references: [profiles.id],
-    relationName: "author",
   }),
-  likedBy: many(profiles, { relationName: "likedComments" }),
 }));
 
 export type TComment = typeof comments.$inferSelect;
