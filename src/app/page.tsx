@@ -1,8 +1,6 @@
 import Leftbar from "./_components/leftbar";
 import Rightbar from "./_components/rightbar";
-import { Suspense } from "react";
 import BlogsList from "./(blogsList)/blogsList";
-import Loading from "./loading";
 
 export default async function Home() {
   return (
@@ -13,9 +11,7 @@ export default async function Home() {
       </div>
       {/* content */}
       <section className="w-full max-w-2xl">
-        <Suspense fallback={<Loading />}>
-          <BlogsList sortBy="createdAt" sortDir="desc" />
-        </Suspense>
+        <BlogsList sortBy="createdAt" sortDir="desc" />
       </section>
       {/* rightbar */}
       <div className="hidden max-w-72 lg:block">

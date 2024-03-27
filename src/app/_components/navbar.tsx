@@ -8,10 +8,13 @@ import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import Leftbar from "./leftbar";
 import Link from "next/link";
 import LogoSVG from "./assets/logo";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { data, status, update } = useSession();
+  // const { user } = data;
 
   const updateSearch = (newSearch: string) => {
     setSearchTerm(newSearch);
@@ -48,7 +51,7 @@ function Navbar() {
       {/* searchbar */}
       <div className="w-72 duration-300 focus-within:w-1/2 focus:outline-2">
         <Input
-          className="focus-visible:ring-primary-custom hidden focus:outline-2 md:block"
+          className="hidden focus:outline-2 focus-visible:ring-primary-custom md:block"
           type="text"
           value={searchTerm}
           onChange={(e) => updateSearch(e.target.value)}
@@ -56,17 +59,31 @@ function Navbar() {
         />
       </div>
       {/* user */}
-      <div className="ms-auto flex gap-4">
-        <Button
-          variant="outline"
-          className="border-primary-custom decoration-primary-custom bg-none underline-offset-2 duration-0 hover:underline"
-          asChild
-        >
-          <Link href="/register">Create account</Link>
-        </Button>
-        <Button variant="ghost" className="hidden md:block">
-          <Link href="/login">Log in</Link>
-        </Button>
+      <div className="ms-auto">
+        {data?.user ? (
+          <div>
+            {data?.user.image ? (
+              <div className="size-10 rounded-full">
+                <Image src={data?.user.image} alt="user image" fill />
+              </div>
+            ) : (
+              <span className="block">{data?.user.name}</span>
+            )}
+          </div>
+        ) : status === "unauthenticated" ? (
+          <div className="flex gap-4">
+            <Button
+              variant="outline"
+              className="border-primary-custom bg-none decoration-primary-custom underline-offset-2 duration-0 hover:underline"
+              asChild
+            >
+              <Link href="/register">Create account</Link>
+            </Button>
+            <Button variant="ghost" className="hidden md:block">
+              <Link href="/api/auth/signin">Log in</Link>
+            </Button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/navbar";
 import { Toaster } from "~/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
+import Providers from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,16 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider>
-          <ThemeProvider
-            disableTransitionOnChange
-            storageKey="theme"
-            themes={["system", "light", "dark"]}
-          >
-            <Navbar />
-            {children}
-          </ThemeProvider>
-        </TRPCReactProvider>
+        <Providers>
+          <TRPCReactProvider>
+            <ThemeProvider
+              disableTransitionOnChange
+              storageKey="theme"
+              themes={["system", "light", "dark"]}
+            >
+              <Navbar />
+              {children}
+            </ThemeProvider>
+          </TRPCReactProvider>
+        </Providers>
         <Toaster />
       </body>
     </html>

@@ -2,9 +2,9 @@ import { asc, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { blogs } from "~/db/schema/blogs";
+import { blogs } from "~/db/schema";
 import { TRPCError } from "@trpc/server";
-import { comments } from "~/db/schema/comments";
+import { comments } from "~/db/schema";
 
 const sortByValues = ["likes", "views", "createdAt"] as const;
 const sortDir = ["asc", "desc"] as const;

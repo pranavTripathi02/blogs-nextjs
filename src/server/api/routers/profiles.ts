@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { eq } from "drizzle-orm";
-import { profiles } from "~/db/schema/profiles";
+import { profiles } from "~/db/schema/";
 import { TRPCError } from "@trpc/server";
 
 const profilesRouter = createTRPCRouter({

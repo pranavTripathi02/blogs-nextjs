@@ -23,11 +23,18 @@ function BlogsList({
 }) {
   const [page, setPage] = useState<number>(1);
 
-  const blogs = api.blogs.getBlogs.useQuery({
-    offset: page * 5 - 5,
-    sortBy,
-    sortDir,
-  }).data;
+  const {
+    data: blogs,
+    isError,
+    isLoading,
+  } = api.blogs.getBlogs.useQuery(
+    {
+      offset: page * 5 - 5,
+      sortBy,
+      sortDir,
+    },
+    { staleTime: Infinity },
+  );
 
   const handlePageChange = ({
     pageNum,
@@ -45,13 +52,17 @@ function BlogsList({
     }
   };
 
-  if (blogs?.length === 0) {
-    handlePageChange({ pageNum: 1 });
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>error</div>;
   }
 
   return (
     <div>
-      {blogs?.length ? (
+      {blogs && blogs.length > 0 ? (
         <div className="space-y-4">
           {blogs[0] && <BlogCardImage blog={blogs[0]} />}
           {blogs[1] && <BlogCardImage blog={blogs[1]} />}
@@ -120,7 +131,7 @@ function BlogsList({
           </Pagination>
         </div>
       ) : (
-        <Loading />
+        <div>We cannot find any posts right now</div>
       )}
     </div>
   );
