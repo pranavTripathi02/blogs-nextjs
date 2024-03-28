@@ -65,10 +65,12 @@ async function AuthorDetails({
         )}
         <div className="mt-8 flex justify-between">
           {/* joined */}
-          <div className="flex flex-col items-start gap-1">
-            <span className="font-bold text-muted-foreground">Joined</span>
-            <span className="text-sm">{createdAt.toDateString()}</span>
-          </div>
+          {createdAt && (
+            <div className="flex flex-col items-start gap-1">
+              <span className="font-bold text-muted-foreground">Joined</span>
+              <span className="text-sm">{createdAt.toDateString()}</span>
+            </div>
+          )}
           {/* links */}
           {(github ?? twitter ?? discord ?? facebook) && (
             <div className="flex flex-col gap-1">

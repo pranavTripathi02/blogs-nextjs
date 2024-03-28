@@ -1,4 +1,4 @@
-import { pgTable, integer, unique } from "drizzle-orm/pg-core";
+import { pgTable, integer, unique, serial } from "drizzle-orm/pg-core";
 import { profiles } from "./profiles";
 import { blogs } from "./blogs";
 import { relations } from "drizzle-orm";
@@ -6,12 +6,12 @@ import { relations } from "drizzle-orm";
 export const profileLikedBlogs = pgTable(
   "profile_liked_blogs",
   {
-    id: integer("id").primaryKey(),
+    id: serial("id").primaryKey(),
     profileId: integer("profile_id")
-      .references(() => profiles.id)
+      .references(() => profiles.id, { onDelete: "cascade" })
       .notNull(),
     blogId: integer("blog_id")
-      .references(() => blogs.id)
+      .references(() => blogs.id, { onDelete: "cascade" })
       .notNull(),
   },
   (t) => {

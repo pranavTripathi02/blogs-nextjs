@@ -49,9 +49,11 @@ function Comment({
           <Link href={`/${comment.commenter.username}`}>
             {comment.commenter?.username}
           </Link>
-          <span className="text-sm font-light text-muted-foreground">
-            {comment.createdAt.toLocaleDateString()}
-          </span>
+          {comment.createdAt && (
+            <span className="text-sm font-light text-muted-foreground">
+              {comment.createdAt.toLocaleDateString()}
+            </span>
+          )}
         </div>
         {/* comment text */}
         <p className="text-muted-foreground">{comment.content}</p>

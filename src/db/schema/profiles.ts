@@ -1,16 +1,10 @@
 import { relations, sql } from "drizzle-orm";
-import {
-  timestamp,
-  pgTable,
-  text,
-  integer,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { timestamp, pgTable, text, varchar, serial } from "drizzle-orm/pg-core";
 import { users } from "./nextAuth";
 import { comments, blogs, profileLikedBlogs, profileBookmarkedBlogs } from ".";
 
 export const profiles = pgTable("profiles", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   userId: text("user_id")
     .references(() => users.id, {
       onDelete: "cascade",

@@ -1,4 +1,4 @@
-import { pgTable, text, integer, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, integer, timestamp, serial } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { comments } from "./comments";
 import { profiles } from "./profiles";
@@ -6,7 +6,7 @@ import { blogTags } from "./blogTags";
 import { profileBookmarkedBlogs, profileLikedBlogs } from ".";
 
 export const blogs = pgTable("blogs", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   authorId: integer("author_id")
     .references(() => profiles.id, {
       onDelete: "cascade",

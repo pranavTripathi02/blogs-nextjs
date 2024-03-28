@@ -1,16 +1,16 @@
-import { pgTable, integer, unique } from "drizzle-orm/pg-core";
+import { pgTable, integer, unique, serial } from "drizzle-orm/pg-core";
 import { profiles, comments } from ".";
 import { relations } from "drizzle-orm";
 
 export const profileLikedComments = pgTable(
   "profile_liked_comments",
   {
-    id: integer("id").primaryKey(),
+    id: serial("id").primaryKey(),
     profileId: integer("profile_id")
-      .references(() => profiles.id)
+      .references(() => profiles.id, { onDelete: "cascade" })
       .notNull(),
     commentId: integer("comment_id")
-      .references(() => comments.id)
+      .references(() => comments.id, { onDelete: "cascade" })
       .notNull(),
   },
   (t) => {

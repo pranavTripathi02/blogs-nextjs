@@ -8,7 +8,7 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
   const { title, author, desc, likes, createdAt, blogTags, comments } = blog;
   const { image } = author.user;
   const blogDate = createdAt?.toDateString();
-  const blogUrl = author.username.replace("/ /g", "") + "/" + blog.id;
+  const blogUrl = author.username + "/" + blog.id;
   return (
     <div className="relative flex flex-col space-y-2 rounded-md bg-background p-2 shadow-sm hover:shadow-lg md:space-y-0 md:px-16">
       <Link href={blogUrl}>

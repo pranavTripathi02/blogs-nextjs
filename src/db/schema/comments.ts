@@ -1,10 +1,16 @@
-import { pgTable, integer, varchar, timestamp } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  integer,
+  varchar,
+  timestamp,
+  serial,
+} from "drizzle-orm/pg-core";
 import { blogs } from "./blogs";
 import { relations } from "drizzle-orm";
 import { profiles } from "./profiles";
 
 export const comments = pgTable("comments", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   blogId: integer("blog_id")
     .notNull()
     .references(() => blogs.id, { onDelete: "cascade" }),

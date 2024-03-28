@@ -1,9 +1,15 @@
-import { integer, pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  varchar,
+  timestamp,
+  serial,
+} from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { profiles, blogTags } from ".";
 
 export const tags = pgTable("tags", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   tag: varchar("tag", { length: 20 }).notNull().unique(),
   createdBy: integer("profile_id").references(() => profiles.id, {
     onDelete: "no action",

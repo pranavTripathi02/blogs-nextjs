@@ -44,10 +44,12 @@ function AuthorDetails({
         </Button>
         <div className="hidden flex-col gap-4 lg:flex">
           <span>{about}</span>
-          <div>
-            <span className="block text-muted-foreground">Joined</span>
-            <span>{createdAt.toDateString()}</span>
-          </div>
+          {createdAt && (
+            <div>
+              <span className="block text-muted-foreground">Joined</span>
+              <span>{createdAt.toDateString()}</span>
+            </div>
+          )}
         </div>
       </div>
       {/* Author blogs */}
