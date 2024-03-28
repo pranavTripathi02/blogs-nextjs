@@ -42,8 +42,6 @@ function Login() {
 
   const onFormSubmit = async (values: z.infer<typeof formSchema>) => {
     const { email, password } = values;
-    // console.log(values);
-    // const loginQuery = api.users.login.useQuery({ username, password });
     await mutation.mutateAsync(
       { email, password },
       {

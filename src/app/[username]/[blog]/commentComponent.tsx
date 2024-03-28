@@ -28,7 +28,6 @@ function Comment({
     else {
       const commentLike = mutation.mutate({ commentId, profileId: 1 });
       if (commentLiked) {
-        console.log("liked comment", commentLike);
         setCommentLiked(false);
       } else {
         e.currentTarget?.classList.add("animate-ping");

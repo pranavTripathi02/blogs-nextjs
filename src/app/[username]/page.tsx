@@ -12,9 +12,8 @@ async function UserProfile({ params }: { params: { username: string } }) {
   let profile;
   try {
     profile = await api.profiles.getProfile.query({ username });
-    // console.log(user);
   } catch (err) {
-    // console.error(err);
+    console.error(err);
     return <NotFound />;
   }
   return (

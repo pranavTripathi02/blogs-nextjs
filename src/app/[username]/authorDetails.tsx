@@ -50,7 +50,7 @@ async function AuthorDetails({
             <AvatarIcon
               width={160}
               height={160}
-              className="rounded-full bg-white"
+              className="rounded-full bg-foreground text-background"
             />
           )}
           <h1 className="text-2xl font-bold">{name}</h1>
