@@ -34,7 +34,7 @@ function Register() {
     <div className="container my-2 h-fit min-w-[20rem] max-w-[30rem] space-y-8 rounded-md bg-background p-8">
       <h1 className="text-xl">
         Create your
-        <span className="bg-gradient-24 from-primary-custom rounded-lg from-50% bg-clip-text px-1 tracking-tighter text-transparent">
+        <span className="rounded-lg bg-gradient-24 from-primary-custom from-50% bg-clip-text px-1 tracking-tighter text-transparent">
           nlogX
         </span>
         account
@@ -53,7 +53,7 @@ function Register() {
           </Button>
         </Link>
         <Link href="/register/email">
-          <Button className="flex justify-center gap-4">
+          <Button className="flex w-full justify-center gap-4">
             <EnvelopeClosedIcon />
             <span>Use email</span>
           </Button>
