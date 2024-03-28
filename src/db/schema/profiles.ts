@@ -1,28 +1,34 @@
 import { relations, sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  timestamp,
+  pgTable,
+  text,
+  integer,
+  varchar,
+} from "drizzle-orm/pg-core";
 import { users } from "./nextAuth";
 import { comments, blogs, profileLikedBlogs, profileBookmarkedBlogs } from ".";
 
-export const profiles = sqliteTable("profiles", {
+export const profiles = pgTable("profiles", {
   id: integer("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .references(() => users.id, {
       onDelete: "cascade",
     })
     .notNull(),
-  username: text("username", { length: 16 }).unique().notNull(),
-  about: text("about", { length: 250 }),
-  phone: text("phone", { length: 10 }),
+  username: varchar("username", { length: 64 }).unique().notNull(),
+  about: varchar("about", { length: 250 }),
+  phone: varchar("phone", { length: 10 }),
   twitter: text("twitter").unique(),
   discord: text("discord").unique(),
   facebook: text("facebook").unique(),
   github: text("github").unique(),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
+  createdAt: timestamp("created_at", { mode: "date" }).default(
+    sql`CURRENT_TIMESTAMP`,
+  ),
+  updatedAt: timestamp("updated_at", { mode: "date" }).default(
+    sql`CURRENT_TIMESTAMP`,
+  ),
 });
 
 export const profilesRelations = relations(profiles, ({ one, many }) => ({

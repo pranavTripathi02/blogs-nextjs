@@ -8,9 +8,9 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "db:generate": "drizzle-kit generate:sqlite",
-    "db:push": "drizzle-kit push:sqlite",
-    "db:check": "drizzle-kit check:sqlite",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:push": "drizzle-kit push:pg",
+    "db:check": "drizzle-kit check:pg",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
@@ -44,6 +44,8 @@
     "next": "^14.1.0",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.0",
@@ -53,8 +55,6 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "postcss": "^8.4.34",
-    "tailwindcss": "^3.4.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -69,8 +69,10 @@
     "drizzle-kit": "^0.20.14",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
+    "postcss": "^8.4.34",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
   "ct3aMetadata": {

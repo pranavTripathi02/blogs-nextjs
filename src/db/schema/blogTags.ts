@@ -1,9 +1,9 @@
-import { integer, sqliteTable, unique } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, unique } from "drizzle-orm/pg-core";
 import { blogs } from "./blogs";
 import { tags } from "./tags";
 import { relations } from "drizzle-orm";
 
-export const blogTags = sqliteTable(
+export const blogTags = pgTable(
   "blog_tags",
   {
     id: integer("id").primaryKey(),

@@ -4,10 +4,10 @@ import { env } from "~/env";
 
 export default {
   schema: "./src/db/schema/*",
-  driver: "better-sqlite",
-  out: "./drizzle/",
+  driver: "pg",
+  out: "./drizzle/migrations/",
   dbCredentials: {
-    url: env.DATABASE_URL,
+    connectionString: env.DATABASE_URL,
   },
   verbose: true,
 } satisfies Config;

@@ -1,15 +1,14 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-import { profiles } from "./profiles";
-import { blogTags } from "./blogTags";
+import { profiles, blogTags } from ".";
 
-export const tags = sqliteTable("tags", {
+export const tags = pgTable("tags", {
   id: integer("id").primaryKey(),
-  tag: text("tag", { length: 20 }).notNull().unique(),
+  tag: varchar("tag", { length: 20 }).notNull().unique(),
   createdBy: integer("profile_id").references(() => profiles.id, {
     onDelete: "no action",
   }),
-  createdAt: integer("created_at", { mode: "timestamp" }),
+  createdAt: timestamp("created_at", { mode: "date" }),
 });
 
 export const tagsRelations = relations(tags, ({ many }) => ({

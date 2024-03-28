@@ -1,21 +1,22 @@
 import {
-  integer,
-  sqliteTable,
+  timestamp,
+  pgTable,
   text,
   primaryKey,
-} from "drizzle-orm/sqlite-core";
-import type { AdapterAccount } from "@auth/core/adapters";
+  integer,
+} from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 import { profiles } from ".";
+import type { AdapterAccount } from "@auth/core/adapters";
 
-export const users = sqliteTable("user", {
-  id: text("id").primaryKey(),
+export const users = pgTable("user", {
+  id: text("id").notNull().primaryKey(),
   name: text("name"),
-  email: text("email").unique().notNull(),
+  email: text("email").notNull(),
   password: text("password"),
-  emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
-  createdAt: integer("created_at", { mode: "timestamp_ms" }).default(
+  createdAt: timestamp("created_at", { mode: "date" }).default(
     sql`CURRENT_TIMESTAMP`,
   ),
 });
@@ -24,7 +25,7 @@ export const usersRelations = relations(users, ({ one }) => ({
   profile: one(profiles),
 }));
 
-export const accounts = sqliteTable(
+export const accounts = pgTable(
   "account",
   {
     userId: text("userId")
@@ -48,20 +49,20 @@ export const accounts = sqliteTable(
   }),
 );
 
-export const sessions = sqliteTable("session", {
+export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").notNull().primaryKey(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-export const verificationTokens = sqliteTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
-    expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),

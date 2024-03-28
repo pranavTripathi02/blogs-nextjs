@@ -1,8 +1,8 @@
-import { sqliteTable, integer, unique } from "drizzle-orm/sqlite-core";
+import { pgTable, integer, unique } from "drizzle-orm/pg-core";
 import { profiles, comments } from ".";
 import { relations } from "drizzle-orm";
 
-export const profileLikedComments = sqliteTable(
+export const profileLikedComments = pgTable(
   "profile_liked_comments",
   {
     id: integer("id").primaryKey(),

@@ -1,11 +1,11 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { pgTable, text, integer, timestamp } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { comments } from "./comments";
 import { profiles } from "./profiles";
 import { blogTags } from "./blogTags";
 import { profileBookmarkedBlogs, profileLikedBlogs } from ".";
 
-export const blogs = sqliteTable("blogs", {
+export const blogs = pgTable("blogs", {
   id: integer("id").primaryKey(),
   authorId: integer("author_id")
     .references(() => profiles.id, {
@@ -20,8 +20,8 @@ export const blogs = sqliteTable("blogs", {
   likes: integer("likes").default(0),
   shares: integer("shares").default(0),
   bookmarks: integer("bookmarks").default(0),
-  createdAt: integer("created_at", { mode: "timestamp" }),
-  updatedAt: integer("updated_at", { mode: "timestamp" }),
+  createdAt: timestamp("created_at", { mode: "date" }),
+  updatedAt: timestamp("updated_at", { mode: "date" }),
 });
 
 export const blogsRelations = relations(blogs, ({ one, many }) => ({

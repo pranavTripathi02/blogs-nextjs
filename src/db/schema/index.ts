@@ -5,7 +5,7 @@ import { profiles } from "./profiles";
 import { tags } from "./tags";
 import { profileBookmarkedBlogs } from "./profileBookmarkedBlogs";
 import { profileLikedBlogs } from "./profileLikedBlogs";
-// import { profilesFollowed } from "./profilesFollowed";
+import { profilesFollowed } from "./profilesFollowed";
 import { blogTags } from "./blogTags";
 // import { blogs } from "./blogs";
 // import { blogs } from "./blogs";
@@ -16,7 +16,7 @@ export {
   blogs,
   comments,
   profiles,
-  // profilesFollowed,
+  profilesFollowed,
   profileLikedBlogs,
   profileBookmarkedBlogs,
   blogTags,
