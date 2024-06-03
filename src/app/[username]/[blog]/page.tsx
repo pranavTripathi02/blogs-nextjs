@@ -64,7 +64,7 @@ async function BlogDetails({
               <div>
                 {/* blog image*/}
                 {imageUrl && (
-                  <div className="h-[300px] w-full overflow-hidden object-cover lg:h-[500px]">
+                  <div className="w-full overflow-hidden object-cover sm:h-[300px] md:h-[400px] lg:h-[500px]">
                     <Image
                       src={imageUrl ?? ""}
                       alt="blog image"

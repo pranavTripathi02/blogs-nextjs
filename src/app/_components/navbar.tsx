@@ -9,7 +9,7 @@ import {
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
-import Leftbar from "./leftbar";
+import Leftbar from "./leftbar/leftbar";
 import Link from "next/link";
 import LogoSVG from "./assets/logo";
 import { useSession } from "next-auth/react";
@@ -41,7 +41,7 @@ function Navbar() {
         </SheetTrigger>
         <SheetContent
           side={"left"}
-          className="w-72 overflow-y-scroll ps-2 lg:hidden"
+          className="w-72 overflow-y-scroll bg-background px-4 lg:hidden"
         >
           <Leftbar />
         </SheetContent>

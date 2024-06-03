@@ -1,4 +1,4 @@
-import Leftbar from "./_components/leftbar";
+import Leftbar from "./_components/leftbar/leftbar";
 import Rightbar from "./_components/rightbar";
 import BlogsList from "./(blogsList)/blogsList";
 

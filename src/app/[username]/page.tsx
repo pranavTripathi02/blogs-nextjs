@@ -1,5 +1,5 @@
 import { api } from "~/trpc/server";
-import Leftbar from "../_components/leftbar";
+import Leftbar from "../_components/leftbar/leftbar";
 import NotFound from "../not-found";
 import Loading from "./loading";
 import { Suspense } from "react";

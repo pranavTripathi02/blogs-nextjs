@@ -72,7 +72,7 @@ function Login() {
       <h1 className="text-xl">
         Sign into your
         <span className="rounded-lg bg-gradient-24 from-primary from-50% bg-clip-text px-1 tracking-tighter text-transparent">
-          nlogX
+          BlogX
         </span>
         account
       </h1>

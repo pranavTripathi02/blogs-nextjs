@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Nlogx",
+  title: "Blogx",
   description: "Web blogs",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

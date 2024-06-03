@@ -1,6 +1,56 @@
 export default function LogoSVG() {
   return (
     <svg
+      width="48"
+      height="48"
+      version="1.1"
+      viewBox="-7 -3 27.867 27.867"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        transform="translate(-14.709 -7.0643)"
+        stroke="currentColor"
+        strokeLinecap="square"
+      >
+        <g strokeLinejoin="round">
+          <rect
+            x="15.13"
+            y="7.5204"
+            width="2.1669"
+            height="20.611"
+            fill="currentColor"
+            strokeWidth=".84304"
+          />
+          <path
+            x="15.370259"
+            y="15.481559"
+            width="14.21604"
+            height="12.41031"
+            d="m15.37 15.482h6.611a7.605 7.605 45 0 1 7.605 7.605v2.7106a2.0947 2.0947 135 0 1-2.0947 2.0947h-12.121z"
+            fill="none"
+            strokeWidth="1.3229"
+          />
+          <path
+            transform="matrix(.8431 0 0 -.79138 2.4117 29.661)"
+            x="15.370259"
+            y="15.481559"
+            width="14.21604"
+            height="12.41031"
+            d="m15.37 15.482h6.611a7.605 7.605 45 0 1 7.605 7.605v2.7106a2.0947 2.0947 135 0 1-2.0947 2.0947h-12.121z"
+            fill="none"
+            strokeWidth="1.3229"
+          />
+        </g>
+        <g fill="currentColor" strokeLinejoin="bevel" strokeWidth=".26458">
+          <rect x="17.081" y="19.709" width="1.8976" height=".89756" ry="0" />
+          <rect x="17.117" y="22.274" width="4.8259" height=".82594" />
+          <rect x="17.118" y="24.804" width="7.8236" height=".82358" />
+        </g>
+      </g>
+    </svg>
+  );
+  return (
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       width="150"

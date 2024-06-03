@@ -19,7 +19,7 @@ function BlogCard({ blog }: { blog: RouterOutputs["blogs"]["getBlogs"][0] }) {
       {/* tags */}
       <div>
         {blogTags && (
-          <div className="my-1 flex flex-wrap gap-2 overflow-x-hidden">
+          <div className="mb-4 mt-2 flex flex-wrap gap-2 overflow-x-hidden">
             {blogTags.map((tagInfo) => (
               <Link
                 key={tagInfo.tag.id}
