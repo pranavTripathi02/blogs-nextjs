@@ -46,4 +46,4 @@ yarn-error.log*
 
 *.bak
 todo.md
-projectAssets
+project_utils
