@@ -11,6 +11,7 @@ export const profiles = pgTable("profiles", {
     })
     .notNull(),
   username: varchar("username", { length: 64 }).unique().notNull(),
+  profilePhoto: varchar("profile_photo"),
   about: varchar("about", { length: 250 }),
   phone: varchar("phone", { length: 10 }),
   twitter: text("twitter").unique(),
